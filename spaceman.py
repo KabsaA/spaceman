@@ -9,31 +9,26 @@ def startGame(failed,guesses,word):
     print("Guess a letter in this 5 letter word")
     guess = input("Try to guess! " + guesses + " Guess letter: ")
 
-    while len(guess) <= len(word):
-        letter = input("Guess a letter: ")
-        for i in word:
-            for j in guess:
-                if j == i:
-                    guess.append(j)
-                if failed >= 3:
-                    print(guess)
-                    break
-                    print("no more guesses")
-                elif len(guess) >= len(word):
-                    print("you lose!")
-                    break
-                    for j in word:
-                        if letter != j:
-                            failed += 1 #where does this go?
-                            print(failed)
-                            print(guess)
-                elif j == letter:
-                    guess += j
-                else:
-                    counters += 1
-                    print(counters)
-startGame()
-# something is wrong with the for loop when it loops it is comparing j to all letters which prints
-# out each letter multiple times
-    #print(guess)
-# need to create a counter for FAILED ATTEMPTS
+    if guess in word:
+        index = word.find(guess)
+        word = word[:index] + "_" + word[index + 1:]
+        guesses = guesses[:index] + guess + guesses[index +1:]
+
+    else:
+        failed += 1
+        if failed < wrong:
+            print("Wrong guess. " + str(wrong - failed) + " failed attempts remaining." )
+
+        elif failed == wrong:
+            print("You lose. The letters you missed were " + word)
+
+    if word == "_" * len(word):
+        print("Yay! You win!")
+    elif wrong != failed:
+        startGame(failed,guesses,word)
+
+startGame(failed,guesses,word)
+
+# use find in python https://www.programiz.com/python-programming/methods/string/find
+# indexing in python https://www.pythonlikeyoumeanit.com/Module3_IntroducingNumpy/BasicIndexing.html
+#specific index stack overflow https://stackoverflow.com/questions/41752946/replacing-a-character-from-a-certain-index
