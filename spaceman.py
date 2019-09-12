@@ -1,4 +1,5 @@
-word = "table"
+from proj.word import getWord
+word = getWord()
 
 failed = 0
 guesses = "_" * len(word)
@@ -6,10 +7,10 @@ guesses = "_" * len(word)
 
 def startGame(failed,guesses,word):
     wrong = 7
-    print("Guess a letter in this 5 letter word")
+    print("Guess this " + str(len(word)) + " letter word.")
     guess = input("Try to guess! " + guesses + " Guess letter: ")
 
-    if guess in word:
+    while guess in word:
         index = word.find(guess)
         word = word[:index] + "_" + word[index + 1:]
         guesses = guesses[:index] + guess + guesses[index +1:]
@@ -29,6 +30,8 @@ def startGame(failed,guesses,word):
 
 startGame(failed,guesses,word)
 
+#sources
 # use find in python https://www.programiz.com/python-programming/methods/string/find
 # indexing in python https://www.pythonlikeyoumeanit.com/Module3_IntroducingNumpy/BasicIndexing.html
 #specific index stack overflow https://stackoverflow.com/questions/41752946/replacing-a-character-from-a-certain-index
+# stackOverflow how to use relative imports https://stackoverflow.com/questions/48931254/relative-import-in-python-3-6
