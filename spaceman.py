@@ -1,13 +1,13 @@
 word = "table"
 
 failed = 0
-counters = 20
+guesses = "_" * len(word)
 
 
-def startGame():
-    wrong = "_____"
+def startGame(failed,guesses,word):
+    wrong = 7
     print("Guess a letter in this 5 letter word")
-    guess = ""
+    guess = input("Try to guess! " + guesses + " Guess letter: ")
 
     while len(guess) <= len(word):
         letter = input("Guess a letter: ")
