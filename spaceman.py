@@ -1,5 +1,5 @@
 from proj.word import getWord
-word = getWord()
+word = getWord() #function defined in imported file
 
 failed = 0
 guesses = "_" * len(word)
@@ -10,7 +10,7 @@ def startGame(failed,guesses,word):
     print("Guess this " + str(len(word)) + " letter word.")
     guess = input("Try to guess! " + guesses + " Guess letter: ")
 
-    while guess in word:
+    while guess in word: #while loop will ensure that multiple letters in one word are both indexed
         index = word.find(guess)
         word = word[:index] + "_" + word[index + 1:]
         guesses = guesses[:index] + guess + guesses[index +1:]
@@ -20,7 +20,7 @@ def startGame(failed,guesses,word):
         if failed < wrong:
             print("Wrong guess. " + str(wrong - failed) + " failed attempts remaining." )
 
-        elif failed == wrong:
+        elif failed == wrong: #if the number of failed attempts equals them total allowed attempts loss
             print("You lose. The letters you missed were " + word)
 
     if word == "_" * len(word):
