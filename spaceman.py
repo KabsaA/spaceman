@@ -1,3 +1,4 @@
+import unittest
 from proj.word import getWord
 word = getWord() #function defined in imported file
 
@@ -23,13 +24,23 @@ def startGame(failed,guesses,word):
         elif failed == wrong: #if the number of failed attempts equals them total allowed attempts loss
             print("You lose. The letters you missed were " + word)
 
+
     if word == "_" * len(word):
         print("Yay! You win!")
     elif wrong != failed:
         startGame(failed,guesses,word)
-
 startGame(failed,guesses,word)
+class StartTest(unittest.TestCase):
+    def testStart(self):
+    #testing when
+        self.assertEqual(startGame(7,guesses,word),"You lose. The letters you missed were " + str(word))
+        self.assertEqual(startGame(7,guesses,"dog"),"You lose. The letters you missed were " + word)
 
+
+
+# run the tests
+if __name__ == '__main__':
+    unittest.main()
 #sources
 # use find in python https://www.programiz.com/python-programming/methods/string/find
 # indexing in python https://www.pythonlikeyoumeanit.com/Module3_IntroducingNumpy/BasicIndexing.html
